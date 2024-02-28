@@ -31,4 +31,4 @@ set(CMAKE_CXX_CLANG_TIDY
 
 include(.doxygen/CMake_Doxygen.txt)
 
-add_executable(ee205_animal_farm src/main.cpp)
+add_executable(hello_main src/hello_main.cpp)
