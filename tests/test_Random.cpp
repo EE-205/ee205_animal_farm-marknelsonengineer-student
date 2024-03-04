@@ -1,15 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
-//          University of Hawaii, College of Engineering
-//          ee205_animal_farm - EE 205 - Spr 2022
+//  University of Hawaii, College of Engineering
+//  ee205_animal_farm - EE 205 - Spr 2024
 //
-/// Anyone who considers arithmetical methods for producing random digits,
-/// is in a state of sin.
+/// Comprehensive test of the Random class
 ///
-/// @file test_Random.cpp
-/// @version 1.0
-///
+/// @file   Weight.h
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   03_May_2022
 ///////////////////////////////////////////////////////////////////////////////
 #define BOOST_TEST_DYN_LINK
 

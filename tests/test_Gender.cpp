@@ -1,16 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
-//          University of Hawaii, College of Engineering
-//          ee205_animal_farm - EE 205 - Spr 2022
+//  University of Hawaii, College of Engineering
+//  ee205_animal_farm - EE 205 - Spr 2024
 //
-/// Comprehensive test of the Gender class enum
+/// Comprehensive test of the Gender class
 ///
-/// @file test_Gender.cpp
-/// @version 1.0
-///
-/// @see https://www.jetbrains.com/help/clion/boost-test-support.html
-///
+/// @file   Weight.h
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   06_Apr_2022
 ///////////////////////////////////////////////////////////////////////////////
 #define BOOST_TEST_DYN_LINK
 

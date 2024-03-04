@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//   ee205_animal_farm - EE 205 - Spr 2024
+//  ee205_animal_farm - EE 205 - Spr 2024
 //
 /// A gender class... for educational use only.
 /// This is not intended to be inclusive of all possible genders

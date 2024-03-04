@@ -1,15 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////////
-//          University of Hawaii, College of Engineering
-//          ee205_animal_farm - EE 205 - Spr 2022
+//  University of Hawaii, College of Engineering
+//  ee205_animal_farm - EE 205 - Spr 2024
 //
 /// Comprehensive test of the Animal class
 ///
-/// @file test_Animal.cpp
-/// @version 1.0
-///
+/// @file   Weight.h
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   09_Apr_2022
 ///////////////////////////////////////////////////////////////////////////////
+
 #define BOOST_TEST_MODULE Animal Farm Test Suite
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>

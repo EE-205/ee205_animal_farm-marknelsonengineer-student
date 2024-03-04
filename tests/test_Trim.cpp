@@ -1,14 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
-//          University of Hawaii, College of Engineering
-//          ee205_animal_farm - EE 205 - Spr 2022
+//  University of Hawaii, College of Engineering
+//  ee205_animal_farm - EE 205 - Spr 2024
 //
-/// Comprehensive test of the Trim functions
+/// Comprehensive test of the Trim class
 ///
-/// @file test_Trim.cpp
-/// @version 1.0
-///
+/// @file   Weight.h
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   10_May_2022
 ///////////////////////////////////////////////////////////////////////////////
 
 #define BOOST_TEST_DYN_LINK
