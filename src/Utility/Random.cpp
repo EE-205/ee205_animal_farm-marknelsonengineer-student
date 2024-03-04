@@ -1,15 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
-//          University of Hawaii, College of Engineering
-//          ee205_animal_farm - EE 205 - Spr 2022
+//  University of Hawaii, College of Engineering
+//   ee205_animal_farm - EE 205 - Spr 2024
 //
 /// Random number utilities
 ///
-/// @file Random.cpp
-/// @version 1.0
-///
+/// @file   Animal.h
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   03_May_2022
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 #include "Random.h"
 

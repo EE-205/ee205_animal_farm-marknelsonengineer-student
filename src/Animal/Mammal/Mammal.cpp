@@ -1,15 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
-//          University of Hawaii, College of Engineering
-//          ee205_animal_farm - EE 205 - Spr 2022
+//  University of Hawaii, College of Engineering
+//   ee205_animal_farm - EE 205 - Spr 2024
 //
 /// Mammals have more fun
 ///
-/// @file Mammal.cpp
-/// @version 1.0
-///
+/// @file   Animal.h
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   09_Apr_2022
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 #include <string>
 #include <cassert>

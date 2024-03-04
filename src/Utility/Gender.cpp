@@ -1,16 +1,13 @@
 ///////////////////////////////////////////////////////////////////////////////
-//         University of Hawaii, College of Engineering
-//         ee205_animal_farm - EE 205 - Spr 2023
+//  University of Hawaii, College of Engineering
+//   ee205_animal_farm - EE 205 - Spr 2024
 //
 /// A gender class... for educational use only.
 /// This is not intended to be inclusive of all possible genders
 ///
-/// @file Gender.cpp
-/// @version 1.0
-///
+/// @file   Animal.h
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   26_May_2022
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 #include <random>
 

@@ -1,15 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
-//         University of Hawaii, College of Engineering
-//         ee205_animal_farm - EE 205 - Spr 2022
+//  University of Hawaii, College of Engineering
+//   ee205_animal_farm - EE 205 - Spr 2024
 //
 /// Where the Wild Things Are
 ///
-/// @file Animal.cpp
-/// @version 1.0
-///
+/// @file   Animal.h
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   30_Mar_2022
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 #include <cassert>    // For assert()
 #include <iostream>   // For cout

@@ -1,15 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
-//          University of Hawaii, College of Engineering
-//          ee205_animal_farm - EE 205 - Spr 2022
+//  University of Hawaii, College of Engineering
+//   ee205_animal_farm - EE 205 - Spr 2024
 //
 /// A utility class for managing Animal names
 ///
-/// @file Name.cpp
-/// @version 1.0
-///
+/// @file   Animal.h
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   10_May_2022
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 #include <fstream>    // For ifstream
 #include <stdexcept>  // For runtime_error

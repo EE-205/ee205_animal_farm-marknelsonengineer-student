@@ -1,15 +1,12 @@
 ///////////////////////////////////////////////////////////////////////////////
-//          University of Hawaii, College of Engineering
-//          ee205_animal_farm - EE 205 - Spr 2022
+//  University of Hawaii, College of Engineering
+//   ee205_animal_farm - EE 205 - Spr 2024
 //
 /// Every Animal has a Weight in the world.
 ///
-/// @file Weight.cpp
-/// @version 1.0
-///
+/// @file   Weight.cpp
 /// @author Mark Nelson <marknels@hawaii.edu>
-/// @date   06_Apr_2022
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 #include <cassert>    // For assert()
 #include <iostream>   // For cout
