@@ -20,8 +20,8 @@ include_directories (${Boost_INCLUDE_DIRS})
 if (Boost_UNIT_TEST_FRAMEWORK_FOUND)
    message(STATUS "Generating unit tests using BOOST Unit Test Framework")
 
-   set(SOURCE_FILES_GENERAL ../src/config.h ../src/Utility/Random.h ../src/Utility/Random.cpp ../src/Utility/Trim.h ../src/Utility/Trim.cpp)
-   set(BOOST_TESTS          test_Animal.cpp test_Random.cpp test_Trim.cpp)
+   set(SOURCE_FILES_GENERAL ../src/config.h ../src/Utility/Random.h ../src/Utility/Random.cpp ../src/Utility/Trim.h ../src/Utility/Trim.cpp ../src/Utility/Name.h ../src/Utility/Name.cpp ../src/Utility/Gender.h ../src/Utility/Gender.cpp)
+   set(BOOST_TESTS          test_Animal.cpp test_Random.cpp test_Trim.cpp test_Name.cpp test_Gender.cpp)
 
    add_executable (All_Boost_Tests ${SOURCE_FILES_GENERAL} ${BOOST_TESTS})
    target_link_libraries (All_Boost_Tests ${Boost_LIBRARIES})

@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 #  #############################################################################
-#  sgx_hello - Fall 2023
+#  University of Hawaii, College of Engineering
+#  Animal Farm - EE 205 - Spring 2024
 #
 ## Generate project statistics for `STATISTICS.md`
 ##

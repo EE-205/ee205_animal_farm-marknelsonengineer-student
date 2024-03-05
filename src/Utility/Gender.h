@@ -1,11 +1,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  ee205_animal_farm - EE 205 - Spr 2024
+//  Animal Farm - EE 205 - Spring 2024
 //
 /// A gender class... for educational use only.
 /// This is not intended to be inclusive of all possible genders
 ///
-/// @file   Animal.h
+/// @file   Gender.h
 /// @author Mark Nelson <marknels@hawaii.edu>
 ////////////////////////////////////////////////////////////////////////////////
 #pragma once

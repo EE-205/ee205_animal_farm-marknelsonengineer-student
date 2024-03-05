@@ -1,14 +1,14 @@
 ###############################################################################
-##  University of Hawaii, College of Engineering
-##  Animal Farm - EE 205 - Spring 2024
+#  University of Hawaii, College of Engineering
+#  Animal Farm - EE 205 - Spring 2024
+#
+## CMake file dedicated to Doxygen
 ##
-### CMake include file dedicated to Doxygen
-###
-### @see https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html
-###
-### @file   CMake_Doxygen.txt
-### @author Mark Nelson <marknels@hawaii.edu>
-###############################################################################
+## @see https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html
+##
+## @file   CMakeLists.txt
+## @author Mark Nelson <marknels@hawaii.edu>
+################################################################################
 
 set(DOC_BUILD_DIR "${PROJECT_BINARY_DIR}/docs")
 
@@ -32,6 +32,7 @@ if (DOXYGEN_FOUND)
        "NOLINT=@par Excluded Warnings: ^^"          # Create a custom @NOLINT tag
        "NOLINTNEXTLINE=@par Excluded Warnings: ^^"  # Create a custom @NOLINTNEXTLINE tag
        "NOLINTBEGIN=@par Excluded Warnings: ^^"     # Create a custom @NOLINTBEGIN tag
+       "API{2}=\\xrefitem API \\\"API Reference\\\" \\\"API Reference\\\" \&bull\;  [\<b\>\\1\<\/b\>](\\2): \\2"  # Create a custom @API tag
     )
     set(DOXYGEN_OPTIMIZE_OUTPUT_FOR_C YES)
     set(DOXYGEN_BUILTIN_STL_SUPPORT YES)

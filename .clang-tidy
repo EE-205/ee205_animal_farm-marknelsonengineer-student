@@ -41,6 +41,7 @@
 #   -performance-no-int-to-ptr                 # This is another esoteric language feature I'll allow
 # portability-*
 # readability-*
+#   -readability-avoid-const-params-in-decls  # It's OK to use const in declarations... I prefer the symmetry
 #   -readability-convert-member-functions-to-static  # We aren't converting everything to static
 #   -readability-implicit-bool-conversion      # This is a pain... sometimes it's helpful, but mostly it adds redundant code
 #   -readability-redundant-access-specifiers,  # Redundant access specifiers works for my documentation style
@@ -70,6 +71,7 @@ Checks: >
     -performance-no-int-to-ptr,
   portability-*,
   readability-*,
+    -readability-avoid-const-params-in-decls,
     -readability-convert-member-functions-to-static,
     -readability-implicit-bool-conversion,
     -readability-magic-numbers,

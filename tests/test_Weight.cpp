@@ -1,15 +1,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  ee205_animal_farm - EE 205 - Spr 2024
+//  Animal Farm - EE 205 - Spring 2024
 //
 /// Comprehensive test of the Weight class
 ///
-/// @file   Weight.h
+/// @file   test_Weight.cpp
 /// @author Mark Nelson <marknels@hawaii.edu>
 ///////////////////////////////////////////////////////////////////////////////
+/// @NOLINTBEGIN
 
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
+
 #include <stdexcept>
 
 #include "../src/Utility/Weight.h"

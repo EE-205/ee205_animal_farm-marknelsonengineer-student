@@ -1,19 +1,22 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  ee205_animal_farm - EE 205 - Spr 2024
+//  Animal Farm - EE 205 - Spring 2024
 //
 /// Comprehensive test of the Gender class
 ///
-/// @file   Weight.h
+/// @file   test_Gender.cpp
 /// @author Mark Nelson <marknels@hawaii.edu>
 ///////////////////////////////////////////////////////////////////////////////
+/// @NOLINTBEGIN
+
 #define BOOST_TEST_DYN_LINK
 
 #include <boost/test/unit_test.hpp>
+
 #include <boost/test/tools/output_test_stream.hpp>
 
-#include <stdexcept>
 #include <iostream>
+//#include <stdexcept>
 
 #include "../src/Utility/Gender.h"
 
@@ -60,15 +63,15 @@ BOOST_AUTO_TEST_SUITE( test_Gender )
 
 
    BOOST_AUTO_TEST_CASE( test_Gender_Output ) {
-      Gender unknownGender = Gender::UNKNOWN_GENDER;
-      Gender maleGender    = Gender::MALE;
-      Gender femaleGender  = Gender::FEMALE;
+      const Gender unknownGender = Gender::UNKNOWN_GENDER;
+      const Gender maleGender    = Gender::MALE;
+      const Gender femaleGender  = Gender::FEMALE;
 
       /// Test the output of cout << someGender
       /// @see https://stackoverflow.com/questions/5405016/can-i-check-my-programs-output-with-boost-test
       {
          boost::test_tools::output_test_stream output;
-         cout_redirect guard( output.rdbuf() );
+         const cout_redirect guard( output.rdbuf() );
          cout << unknownGender;
          BOOST_CHECK( output.is_equal("Unknown gender")  ) ;
          output.clear();
@@ -81,3 +84,4 @@ BOOST_AUTO_TEST_SUITE( test_Gender )
    }
 
 BOOST_AUTO_TEST_SUITE_END()
+/// @NOLINTEND

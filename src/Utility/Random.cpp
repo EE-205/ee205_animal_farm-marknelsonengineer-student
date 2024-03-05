@@ -1,10 +1,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  ee205_animal_farm - EE 205 - Spr 2024
+//  Animal Farm - EE 205 - Spring 2024
 //
 /// Random number utilities
 ///
-/// @file   Animal.h
+/// @file   Random.cpp
 /// @author Mark Nelson <marknels@hawaii.edu>
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -12,5 +12,9 @@
 
 using namespace std;
 
-std::random_device trueRNG;          ///< This is a real random number generator (if available)
-std::mt19937 mersenneTwisterPRNG(0); ///< This is a seeded pseudorandom number generator
+/// This is a real random number generator (if available)
+std::random_device trueRNG;
+
+/// This is a seeded pseudorandom number generator
+/// @returns
+std::mt19937 mersenneTwisterPRNG( 0 );

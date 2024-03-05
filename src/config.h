@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  ee205_animal_farm - EE 205 - Spr 2024
+//  Animal Farm - EE 205 - Spring 2024
 //
 /// Global configuration definitions for Animal Farm
 ///
@@ -9,17 +9,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include <iostream>
 #include <iomanip>    // For setw() & setfill()
+#include <iostream>
 #include <random>     // For random_device & mt19937
 
 #include "Utility/Random.h"
 
 /// A grammatically correct title for the program
-#define PROGRAM_TITLE "Animal Farm 4"
+#define PROGRAM_TITLE "Animal Farm"
 
 /// A short-title for the program (used for console messages)
-#define PROGRAM_NAME  "animalfarm4"
+#define PROGRAM_NAME  "animalfarm"
 
 // Set to trace the flow of execution through this code
 // #define TRACE

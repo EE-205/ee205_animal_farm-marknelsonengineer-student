@@ -1,22 +1,23 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  ee205_animal_farm - EE 205 - Spr 2024
+//  Animal Farm - EE 205 - Spring 2024
 //
-/// A utility class for managing Animal names
+/// A utility class for managing names on the farm
 ///
-/// @file   Animal.h
+/// @file   Name.cpp
 /// @author Mark Nelson <marknels@hawaii.edu>
 ////////////////////////////////////////////////////////////////////////////////
 
+#include <cassert>    // For assert
+#include <ctype.h>    // For isspace
 #include <fstream>    // For ifstream
-#include <stdexcept>  // For runtime_error
 #include <iostream>   // For cout
 #include <limits>     // For numeric_limits
-#include <ctype.h>    // For isspace
-#include <cassert>    // For assert
+#include <stdexcept>  // For runtime_error
 
-#include "../config.h"
-#include "Name.h"
+#include "Name.h"       // For obvious reasons
+
+#include "../config.h"  // For nameRNG
 #include "Trim.h"
 
 using namespace std;
@@ -50,7 +51,7 @@ std::string Name::getNextName() noexcept {
 
       /// Remove names as they get used
       uniform_int_distribution<>  nameRNG( 0, (int) names.size()-1 );
-      int nameIndex = nameRNG( ANIMAL_FARM_RNG );
+      const int nameIndex = nameRNG( ANIMAL_FARM_RNG );
       string theName = names[nameIndex];
       names.erase( names.begin()+nameIndex );
 
@@ -85,10 +86,11 @@ void Name::reset() {
 
       string line;
       while( getline( file, line )) {
-         line = trim_in( line );
-         if( !Name::validateName( line ) )   /// As the names are loaded from the file, verify that each name is valid with validateName()
+         line = trim_edges( line );
+         if( !Name::validateName( line ) ) {  /// As the names are loaded from the file, verify that each name is valid with validateName()
             continue;
-         names.push_back( move( line ));  // Use move semantics
+         }
+         names.push_back( std::move( line ));  // Use move semantics
       }
 
       #ifdef DEBUG
@@ -117,7 +119,7 @@ Name::serial_t Name::remainingNames() noexcept {
 }
 
 
-/// newName should have had ::trim_in run on it before it's validated here.
+/// newName should have had XXXXX run on it before it's validated here.
 ///
 /// The validation rules are:
 ///
@@ -134,31 +136,22 @@ Name::serial_t Name::remainingNames() noexcept {
 /// @return `true` if the name is valid.  `false` if it's not.
 bool Name::validateName( const std::string_view newName ) {
 
-   if( !validateNotEmpty( newName ))
-      return false;
+   if( !validateNotEmpty( newName )) { return false; }
 
-   if( !validateTrimmed( newName ))
-      return false;
+   if( !validateTrimmed( newName )) { return false; }
 
-   if( !validateStartsWithAlpha( newName ))
-      return false;
+   if( !validateStartsWithAlpha( newName )) { return false; }
 
-   if( !validateNoSpecialChars( newName ))
-      return false;
-
-   // This is a little subtle.  At this point, the only "whitespace" allowed is
-   // a space ' ' and a '-', so let's just look for them...
-   if( !validateInteriorWhitespaceTrimmed( newName ))
-      return false;
+   if( !validateNoSpecialChars( newName )) { return false; }
 
    return true;
 }
 
 
+/// @API{ string_view.empty, https://en.cppreference.com/w/cpp/string/basic_string_view/empty }
 /// @hidecallergraph @hidecallgraph
 bool Name::validateNotEmpty( const string_view newName ) {
    if( newName.empty() ) {
-      ///   If not valid, print `The name should not be empty` and return `false`
       cout << PROGRAM_NAME << ": The name should not be empty" << endl;
       return false;
    }
@@ -167,10 +160,12 @@ bool Name::validateNotEmpty( const string_view newName ) {
 }
 
 
+/// @API{ isspace, https://en.cppreference.com/w/cpp/string/byte/isspace }
 /// @hidecallergraph @hidecallgraph
 bool Name::validateTrimmed( const string_view newName ) {
-   if( newName.empty() )
+   if( newName.empty() ) {
       return true;  /// Empty strings are considered trimmed
+   }
 
    if( isspace( *newName.begin() ) || isspace( *(newName.end()-1) ) ) {
       ///   If not valid, print `The name should be trimmed for whitespace` and return `false`
@@ -181,7 +176,7 @@ bool Name::validateTrimmed( const string_view newName ) {
    return true;
 }
 
-
+/// @API{ isalpha, https://en.cppreference.com/w/cpp/string/byte/isalpha }
 /// @hidecallergraph @hidecallgraph
 bool Name::validateStartsWithAlpha( const string_view newName ) {
    if( !isalpha( *newName.begin() ) ) {
@@ -194,35 +189,18 @@ bool Name::validateStartsWithAlpha( const string_view newName ) {
 }
 
 
+/// @API{ isalnum, https://en.cppreference.com/w/cpp/string/byte/isalnum }
 /// @hidecallergraph @hidecallgraph
 bool Name::validateNoSpecialChars( const string_view newName ) {
    for( auto i = newName.begin() ; i != newName.end() ; i++ ) {
-      if( isalnum( *i ) || *i == ' ' || *i == '-' )
+      if( isalnum( *i ) || *i == ' ' || *i == '-' ) {
          continue;
-      else { // *i is not a valid character...
-         ///   If not valid, print `The name should not have any special characters` and return `false`
-         cout << PROGRAM_NAME << ": The name should not have any special characters" << endl;
-         return false;
       }
-   }
 
-   return true;
-}
-
-
-/// @hidecallergraph @hidecallgraph
-bool Name::validateInteriorWhitespaceTrimmed( const string_view newName ) {
-   string trialName { trim( newName ) };  // Trim whitespace
-
-   for( auto i = trialName.begin() ; i+1 != trialName.end() ; i++ ) {
-      bool isCurrentWhitespace = (*i == ' ' || *i == '-' ) ? true : false;
-      bool isNextWhitespace = (*(i+1) == ' ' || *(i+1) == '-' ) ? true : false;
-
-      if( isCurrentWhitespace && isNextWhitespace ) {
-         ///   If not valid, print `The interior whitespace of the name should be trimmed` and return `false`
-         cout << PROGRAM_NAME << ": The interior whitespace of the name should be trimmed" << endl;
-         return false;
-      }
+      // *i is not a valid character...
+      // If not valid, print `The name should not have any special characters` and return `false`
+      cout << PROGRAM_NAME << ": The name should not have any special characters" << endl;
+      return false;
    }
 
    return true;

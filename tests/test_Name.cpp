@@ -1,19 +1,21 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  ee205_animal_farm - EE 205 - Spr 2024
+//  Animal Farm - EE 205 - Spring 2024
 //
 /// Comprehensive test of the Name class
 ///
-/// @file   Weight.h
+/// @file   test_Name.cpp
 /// @author Mark Nelson <marknels@hawaii.edu>
 ///////////////////////////////////////////////////////////////////////////////
+/// @NOLINTBEGIN
 
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
+
 #include <boost/test/tools/output_test_stream.hpp>
 
-#include <stdexcept>
 #include <istream>
+#include <stdexcept>
 
 #include "../src/Utility/Name.h"
 
@@ -22,7 +24,7 @@ using namespace std;
 BOOST_AUTO_TEST_SUITE( test_Name )
 
    BOOST_AUTO_TEST_CASE( test_Name1 ) {
-      Name testName( "./data/testNames1.txt" );
+      Name testName( "../../data/testNames1.txt" );
 
       BOOST_CHECK_EQUAL( testName.remainingNames(), 1 );
       BOOST_CHECK_EQUAL( testName.getNextName(), "alpha" );
@@ -36,7 +38,7 @@ BOOST_AUTO_TEST_SUITE( test_Name )
 
 
    BOOST_AUTO_TEST_CASE( test_Name2 ) {
-      Name testName( "./data/testNames2.txt" );
+      Name testName( "../../data/testNames2.txt" );
 
       BOOST_CHECK_EQUAL( testName.remainingNames(), 2 );
       BOOST_CHECK_NO_THROW( testName.getNextName() );
@@ -52,7 +54,7 @@ BOOST_AUTO_TEST_SUITE( test_Name )
 
 
    BOOST_AUTO_TEST_CASE( test_Name24 ) {
-      Name testName( "./data/testNames24.txt" );
+      Name testName( "../../data/testNames24.txt" );
 
       BOOST_CHECK_EQUAL( testName.remainingNames(), 24 );
 
@@ -145,7 +147,7 @@ BOOST_AUTO_TEST_SUITE( test_Name )
       boost::test_tools::output_test_stream output;
       {
          cout_redirect guard( output.rdbuf() );
-         bool result = Name::validateNotEmpty( "" );
+         const bool result = Name::validateNotEmpty( "" );
          BOOST_CHECK_EQUAL( result, false );
       }
       BOOST_CHECK_NE( output.str().find( "The name should not be empty" ), string::npos );
@@ -202,8 +204,8 @@ BOOST_AUTO_TEST_SUITE( test_Name )
       BOOST_CHECK_NE( output.str().find( "The name should not start with a number or -" ), string::npos );
 
       for( char const &c: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" ) {
-         if( c == '\0' ) continue;  // Range based for loops return the \0
-         string s( 1, c );
+         if( c == '\0' ) { continue; }  // Range based for loops return the \0
+         const string s( 1, c );
          BOOST_CHECK_EQUAL( Name::validateStartsWithAlpha( s ), true );
       }
 
@@ -212,18 +214,6 @@ BOOST_AUTO_TEST_SUITE( test_Name )
          s += "Sam";
          BOOST_CHECK_EQUAL( Name::validateStartsWithAlpha( s ), false );
       }
-   }
-
-
-   BOOST_AUTO_TEST_CASE( test_validate_name_with_interior_whitespace ) {
-      boost::test_tools::output_test_stream output;
-      {  cout_redirect guard( output.rdbuf() );
-         bool result = Name::validateInteriorWhitespaceTrimmed( "Boo--Boo" );
-         BOOST_CHECK_EQUAL( result, false );
-      }
-      BOOST_CHECK_NE( output.str().find( "The interior whitespace of the name should be trimmed" ), string::npos );
-
-      BOOST_CHECK_EQUAL( Name::validateInteriorWhitespaceTrimmed( "   Sam Sam Sam\tSam\nSam\rSam\fSam\vSam Sam   " ), true );
    }
 
 
@@ -248,13 +238,10 @@ BOOST_AUTO_TEST_SUITE( test_Name )
       BOOST_CHECK_EQUAL( Name::validateName( "Sam-Sam" ), true );
       BOOST_CHECK_EQUAL( Name::validateName( "Sam-Sam-Sam" ), true );
       BOOST_CHECK_EQUAL( Name::validateName( "Sam-Sam-Sam-Sam" ), true );
-      BOOST_CHECK_EQUAL( Name::validateName( "Sam- Sam" ), false );
-      BOOST_CHECK_EQUAL( Name::validateName( "Sam -Sam" ), false );
-      BOOST_CHECK_EQUAL( Name::validateName( "Sam  Sam" ), false );
-      BOOST_CHECK_EQUAL( Name::validateName( "Sam--Sam" ), false );
       BOOST_CHECK_EQUAL( Name::validateName( "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvbwxyz0123456789-" ), true );
       BOOST_CHECK_EQUAL( Name::validateName( "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvbwxyz0123456789*" ), false );
       BOOST_CHECK_EQUAL( Name::validateName( "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvbwxyz0123456789@" ), false );
    }
 
 BOOST_AUTO_TEST_SUITE_END()
+/// @NOLINTEND

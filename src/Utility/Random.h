@@ -1,10 +1,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  ee205_animal_farm - EE 205 - Spr 2024
+//  Animal Farm - EE 205 - Spring 2024
 //
 /// Random number utilities
 ///
-/// @file   Animal.h
+/// @file   Random.h
 /// @author Mark Nelson <marknels@hawaii.edu>
 ////////////////////////////////////////////////////////////////////////////////
 #pragma once
