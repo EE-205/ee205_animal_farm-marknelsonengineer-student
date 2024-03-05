@@ -29,7 +29,9 @@ set(CMAKE_CXX_CLANG_TIDY
         clang-tidy -extra-arg=-std=c++17;
 )
 
-include(.doxygen/CMake_Doxygen.txt)
+include(.doxygen/CMakeLists.txt)
+
+add_subdirectory(tests)
 
 add_executable(main_hello src/main_hello.cpp
         src/config.h)

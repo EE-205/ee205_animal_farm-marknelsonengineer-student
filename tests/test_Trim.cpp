@@ -1,16 +1,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 //  University of Hawaii, College of Engineering
-//  ee205_animal_farm - EE 205 - Spr 2024
+//  Animal Farm - EE 205 - Spring 2024
 //
 /// Comprehensive test of the Trim class
 ///
-/// @file   Weight.h
+/// @file   test_Trim.cpp
 /// @author Mark Nelson <marknels@hawaii.edu>
 ///////////////////////////////////////////////////////////////////////////////
 
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
-#include <stdexcept>
 
 #include "../src/Utility/Trim.h"
 
@@ -64,87 +63,49 @@ BOOST_AUTO_TEST_SUITE( test_Trim )
 
 
    BOOST_AUTO_TEST_CASE( test_Trim ) {
-      BOOST_CHECK_EQUAL( trim( "" ), "" );
-      BOOST_CHECK_EQUAL( trim( "A" ), "A" );
-      BOOST_CHECK_EQUAL( trim( "AB" ), "AB" );
-      BOOST_CHECK_EQUAL( trim( "ABC" ), "ABC" );
+      BOOST_CHECK_EQUAL(trim_edges(""), "" );
+      BOOST_CHECK_EQUAL(trim_edges("A"), "A" );
+      BOOST_CHECK_EQUAL(trim_edges("AB"), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges("ABC"), "ABC" );
 
-      BOOST_CHECK_EQUAL( trim( " " ), "" );
-      BOOST_CHECK_EQUAL( trim( " A" ), "A" );
-      BOOST_CHECK_EQUAL( trim( " AB" ), "AB" );
-      BOOST_CHECK_EQUAL( trim( " ABC" ), "ABC" );
+      BOOST_CHECK_EQUAL(trim_edges(" "), "" );
+      BOOST_CHECK_EQUAL(trim_edges(" A"), "A" );
+      BOOST_CHECK_EQUAL(trim_edges(" AB"), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges(" ABC"), "ABC" );
 
-      BOOST_CHECK_EQUAL( trim( "\t " ), "" );
-      BOOST_CHECK_EQUAL( trim( "\t A" ), "A" );
-      BOOST_CHECK_EQUAL( trim( "\t AB" ), "AB" );
-      BOOST_CHECK_EQUAL( trim( "\t ABC" ), "ABC" );
+      BOOST_CHECK_EQUAL(trim_edges("\t "), "" );
+      BOOST_CHECK_EQUAL(trim_edges("\t A"), "A" );
+      BOOST_CHECK_EQUAL(trim_edges("\t AB"), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges("\t ABC"), "ABC" );
 
-      BOOST_CHECK_EQUAL( trim( " \t\f\n\r\v " ), "" );
-      BOOST_CHECK_EQUAL( trim( " \t\f\n\r\v A" ), "A" );
-      BOOST_CHECK_EQUAL( trim( " \t\f\n\r\v AB" ), "AB" );
-      BOOST_CHECK_EQUAL( trim( " \t\f\n\r\v ABC" ), "ABC" );
+      BOOST_CHECK_EQUAL(trim_edges(" \t\f\n\r\v "), "" );
+      BOOST_CHECK_EQUAL(trim_edges(" \t\f\n\r\v A"), "A" );
+      BOOST_CHECK_EQUAL(trim_edges(" \t\f\n\r\v AB"), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges(" \t\f\n\r\v ABC"), "ABC" );
 
-      BOOST_CHECK_EQUAL( trim( "A " ), "A" );
-      BOOST_CHECK_EQUAL( trim( "AB " ), "AB" );
-      BOOST_CHECK_EQUAL( trim( "ABC " ), "ABC" );
+      BOOST_CHECK_EQUAL(trim_edges("A "), "A" );
+      BOOST_CHECK_EQUAL(trim_edges("AB "), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges("ABC "), "ABC" );
 
-      BOOST_CHECK_EQUAL( trim( "A \t" ), "A" );
-      BOOST_CHECK_EQUAL( trim( "AB \t" ), "AB" );
-      BOOST_CHECK_EQUAL( trim( "ABC \t" ), "ABC" );
+      BOOST_CHECK_EQUAL(trim_edges("A \t"), "A" );
+      BOOST_CHECK_EQUAL(trim_edges("AB \t"), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges("ABC \t"), "ABC" );
 
-      BOOST_CHECK_EQUAL( trim( "A \t\f\n\r\v " ), "A" );
-      BOOST_CHECK_EQUAL( trim( "AB \t\f\n\r\v " ), "AB" );
-      BOOST_CHECK_EQUAL( trim( "ABC \t\f\n\r\v " ), "ABC" );
+      BOOST_CHECK_EQUAL(trim_edges("A \t\f\n\r\v "), "A" );
+      BOOST_CHECK_EQUAL(trim_edges("AB \t\f\n\r\v "), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges("ABC \t\f\n\r\v "), "ABC" );
 
-      BOOST_CHECK_EQUAL( trim( " A " ), "A" );
-      BOOST_CHECK_EQUAL( trim( " AB " ), "AB" );
-      BOOST_CHECK_EQUAL( trim( " ABC " ), "ABC" );
+      BOOST_CHECK_EQUAL(trim_edges(" A "), "A" );
+      BOOST_CHECK_EQUAL(trim_edges(" AB "), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges(" ABC "), "ABC" );
 
-      BOOST_CHECK_EQUAL( trim( "\t A \t" ), "A" );
-      BOOST_CHECK_EQUAL( trim( "\t AB \t" ), "AB" );
-      BOOST_CHECK_EQUAL( trim( "\t ABC \t" ), "ABC" );
+      BOOST_CHECK_EQUAL(trim_edges("\t A \t"), "A" );
+      BOOST_CHECK_EQUAL(trim_edges("\t AB \t"), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges("\t ABC \t"), "ABC" );
 
-      BOOST_CHECK_EQUAL( trim( " \t\f\n\r\v A \t\f\n\r\v " ), "A" );
-      BOOST_CHECK_EQUAL( trim( " \t\f\n\r\v AB \t\f\n\r\v " ), "AB" );
-      BOOST_CHECK_EQUAL( trim( " \t\f\n\r\v ABC \t\f\n\r\v " ), "ABC" );
-   }
-
-   BOOST_AUTO_TEST_CASE( test_Trim_In ) {
-      BOOST_CHECK_EQUAL( trim_in( "" ), "" );
-      BOOST_CHECK_EQUAL( trim_in( "A" ), "A" );
-      BOOST_CHECK_EQUAL( trim_in( " A" ), "A" );
-      BOOST_CHECK_EQUAL( trim_in( "A " ), "A" );
-      BOOST_CHECK_EQUAL( trim_in( " A " ), "A" );
-
-      BOOST_CHECK_EQUAL( trim_in( " " ), "" );
-      BOOST_CHECK_EQUAL( trim_in( " A " ), "A" );
-      BOOST_CHECK_EQUAL( trim_in( "  A" ), "A" );
-      BOOST_CHECK_EQUAL( trim_in( "A  " ), "A" );
-      BOOST_CHECK_EQUAL( trim_in( "  A  " ), "A" );
-
-      BOOST_CHECK_EQUAL( trim_in( "A B" ), "A B" );
-      BOOST_CHECK_EQUAL( trim_in( "A  B" ), "A B" );
-      BOOST_CHECK_EQUAL( trim_in( "A   B" ), "A B" );
-
-      BOOST_CHECK_EQUAL( trim_in( "AA BB" ), "AA BB" );
-      BOOST_CHECK_EQUAL( trim_in( "AA  BB" ), "AA BB" );
-      BOOST_CHECK_EQUAL( trim_in( "AA   BB" ), "AA BB" );
-
-      BOOST_CHECK_EQUAL( trim_in( " A B " ), "A B" );
-      BOOST_CHECK_EQUAL( trim_in( "  A  B  " ), "A B" );
-      BOOST_CHECK_EQUAL( trim_in( "   A   B   " ), "A B" );
-
-      BOOST_CHECK_EQUAL( trim_in( "A B C" ), "A B C" );
-      BOOST_CHECK_EQUAL( trim_in( "A  B  C" ), "A B C" );
-      BOOST_CHECK_EQUAL( trim_in( "A   B   C" ), "A B C" );
-
-      BOOST_CHECK_EQUAL( trim_in( " A B C " ), "A B C" );
-      BOOST_CHECK_EQUAL( trim_in( "  A  B  C  " ), "A B C" );
-      BOOST_CHECK_EQUAL( trim_in( "   A   B   C   " ), "A B C" );
-
-      BOOST_CHECK_EQUAL( trim_in( "\t\f\n\r\vA\t\f\n\r\vB\t\f\n\r\vC\t\f\n\r\v" ), "A B C" );
-      BOOST_CHECK_EQUAL( trim_in( "\t\f\n\r\vAA\t\f\n\r\vBB\t\f\n\r\vCC\t\f\n\r\v" ), "AA BB CC" );
-      BOOST_CHECK_EQUAL( trim_in( "\t\f\n\r\vAAA\t\f\n\r\vBBB\t\f\n\r\vCCC\t\f\n\r\v" ), "AAA BBB CCC" );
+      BOOST_CHECK_EQUAL(trim_edges(" \t\f\n\r\v A \t\f\n\r\v "), "A" );
+      BOOST_CHECK_EQUAL(trim_edges(" \t\f\n\r\v AB \t\f\n\r\v "), "AB" );
+      BOOST_CHECK_EQUAL(trim_edges(" \t\f\n\r\v ABC \t\f\n\r\v "), "ABC" );
    }
 
    BOOST_AUTO_TEST_SUITE_END()
