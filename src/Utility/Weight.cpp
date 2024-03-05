@@ -9,9 +9,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #include <cassert>    // For assert()
+#include <iomanip>    // For setw() & setfill()
 #include <iostream>   // For cout
 #include <stdexcept>  // For out_of_range
-#include <iomanip>    // For setw() & setfill()
 
 #include "../config.h"
 #include "Weight.h"
@@ -20,7 +20,7 @@ using namespace std;
 
 
 // Constructor 1 -- No parameters
-Weight::Weight() noexcept :
+Weight::Weight() :
          unitOfWeight { POUND }            // Member initializer list
 {
    setInitialMaxWeight( UNKNOWN_WEIGHT );  // Sets maxWeight and bHasMax
@@ -41,7 +41,7 @@ Weight::Weight( const Weight::t_weight newWeight ) :
 
 // Constructor 3
 /// Once #UnitOfWeight is set, it can't be changed
-Weight::Weight( const Weight::UnitOfWeight newUnitOfWeight ) noexcept :
+Weight::Weight( const Weight::UnitOfWeight newUnitOfWeight ) :
         unitOfWeight { newUnitOfWeight }   // Member initializer list
 {
    setInitialMaxWeight( UNKNOWN_WEIGHT );  // Sets maxWeight and bHasMax
@@ -335,6 +335,9 @@ void Weight::dump() const noexcept {
 ///     | `Weight weight( 0.5, Weight::KILO, 2 )` | `0.5 out of 2 Kilos`    |
 ///     | `Weight weight( Weight::KILO, 1 )`      | `Unknown out of 1 Kilo` |
 ///
+/// @param lhs_stream The stream to send the text to
+/// @param rhs_Weight The weight we are printing
+/// @return The stream to send the text to
 std::ostream& operator<<( std::ostream& lhs_stream, const Weight& rhs_Weight ) {
    stringstream stringBuffer;
 
@@ -342,7 +345,8 @@ std::ostream& operator<<( std::ostream& lhs_stream, const Weight& rhs_Weight ) {
       lhs_stream << "Unknown" ;
       return lhs_stream;
    }
-   else if( rhs_Weight.isWeightKnown() ) {
+
+   if( rhs_Weight.isWeightKnown() ) {
       stringBuffer << rhs_Weight.getWeight();
    } else {
       stringBuffer << "Unknown";
@@ -379,8 +383,8 @@ bool Weight::operator==( const Weight& rhs_Weight ) const {
    /// Convert the two Weight's units into a common unit before comparing them
    ///
    /// Treat unknown weights as 0 (so we can sort them without throwing an exception)
-   Weight::t_weight lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
-   Weight::t_weight rhs_weight = (rhs_Weight.bIsKnown) ? rhs_Weight.getWeight(Weight::POUND) : 0;
+   const Weight::t_weight lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
+   const Weight::t_weight rhs_weight = (rhs_Weight.bIsKnown) ? rhs_Weight.getWeight(Weight::POUND) : 0;
 
    return lhs_weight == rhs_weight;
 }
@@ -390,8 +394,8 @@ bool Weight::operator<( const Weight& rhs_Weight ) const {
    /// Convert the two Weight's units into a common unit before comparing them
    ///
    /// Treat unknown weights as 0 (so we can sort them without throwing an exception)
-   Weight::t_weight lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
-   Weight::t_weight rhs_weight = (rhs_Weight.bIsKnown) ? rhs_Weight.getWeight(Weight::POUND) : 0;
+   const Weight::t_weight lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
+   const Weight::t_weight rhs_weight = (rhs_Weight.bIsKnown) ? rhs_Weight.getWeight(Weight::POUND) : 0;
 
    return lhs_weight < rhs_weight;
 }

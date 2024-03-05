@@ -64,7 +64,7 @@
           </ClangTidyCheckOption>
         </list>
       </option>
-      <option name="clangTidyChecks" value="-*,boost-*,portability-*,bugprone-*,-bugprone-easily-swappable-parameters,cert-*,-cert-msc32-c,-cert-msc30-c,-cert-msc50-cpp,-cert-msc51-cpp,-cert-err58-cpp,clang-analyzer-*,-clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,llvm-*,-llvm-header-guard,misc-*,-misc-use-anonymous-namespace,-misc-no-recursion,-misc-non-private-member-variables-in-classes,performance-*,-performance-no-int-to-ptr,readability-*,-readability-avoid-const-params-in-decls,-readability-magic-numbers,-readability-redundant-access-specifiers,-readability-redundant-string-init,-readability-implicit-bool-conversion,-readability-convert-member-functions-to-static" />
+      <option name="clangTidyChecks" value="-*,boost-*,portability-*,bugprone-*,-bugprone-easily-swappable-parameters,cert-*,-cert-msc32-c,-cert-msc30-c,-cert-msc50-cpp,-cert-msc51-cpp,-cert-err58-cpp,clang-analyzer-*,-clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,llvm-*,-llvm-header-guard,-llvm-qualified-auto,misc-*,-misc-use-anonymous-namespace,-misc-no-recursion,-misc-non-private-member-variables-in-classes,performance-*,-performance-no-int-to-ptr,readability-*,-readability-avoid-const-params-in-decls,-readability-magic-numbers,-readability-qualified-auto,-readability-redundant-access-specifiers,-readability-redundant-string-init,-readability-implicit-bool-conversion,-readability-convert-member-functions-to-static" />
     </inspection_tool>
     <inspection_tool class="Clazy" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ComposeMissingKeys" enabled="false" level="ERROR" enabled_by_default="false" />

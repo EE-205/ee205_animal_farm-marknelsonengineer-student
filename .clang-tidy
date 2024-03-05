@@ -33,6 +33,7 @@
 #   -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling  # Allow old buffer handling (for educational purposes only)
 # llvm-*
 #   -llvm-header-guard   # We use #pragma once, not a traditional header guard
+#   -llvm-qualified-auto # Let auto be auto
 # misc-*
 #   -misc-no-recursion
 #   -misc-non-private-member-variables-in-classes
@@ -44,8 +45,9 @@
 #   -readability-avoid-const-params-in-decls  # It's OK to use const in declarations... I prefer the symmetry
 #   -readability-convert-member-functions-to-static  # We aren't converting everything to static
 #   -readability-implicit-bool-conversion      # This is a pain... sometimes it's helpful, but mostly it adds redundant code
-#   -readability-redundant-access-specifiers,  # Redundant access specifiers works for my documentation style
 #   -readability-magic-numbers   # Magic numbers are generally OK
+#   -readability-qualified-auto  # Let auto be auto
+#   -readability-redundant-access-specifiers,  # Redundant access specifiers works for my documentation style
 #   -readability-redundant-string-init  # Redundant strings are OK
 ---
 Checks: >
@@ -63,6 +65,7 @@ Checks: >
     -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,
   llvm-*,
     -llvm-header-guard,
+    -llvm-qualified-auto,
   misc-*,
     -misc-no-recursion,
     -misc-non-private-member-variables-in-classes,
@@ -75,6 +78,7 @@ Checks: >
     -readability-convert-member-functions-to-static,
     -readability-implicit-bool-conversion,
     -readability-magic-numbers,
+    -readability-qualified-auto,
     -readability-redundant-access-specifiers,
     -readability-redundant-string-init
 HeaderFilterRegex: '.+.h'

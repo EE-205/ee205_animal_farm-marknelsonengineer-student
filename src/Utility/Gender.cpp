@@ -18,6 +18,8 @@ using namespace std;
 
 /// Define a long-lasting (static) Random Number Generator (RNG) from the first
 /// Gender (#Gender::UNKNOWN_GENDER) to the last Gender (#Gender::FEMALE)
+///
+/// @return A random Gender
 static uniform_int_distribution<> genderRNG( (int) Gender::UNKNOWN_GENDER, (int) Gender::FEMALE );
 
 

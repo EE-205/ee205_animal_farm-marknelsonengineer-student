@@ -68,7 +68,7 @@ public:  /////////////////////////// Public Methods ////////////////////////////
    /// Get the next name
    ///
    /// @return Return the next name from this Name object
-   std::string getNextName() noexcept;
+   std::string getNextName();
 
    /// Erase and then re-load the names database or set the serial number to 0
    void reset();

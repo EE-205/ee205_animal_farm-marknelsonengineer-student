@@ -25,6 +25,8 @@ enum class Gender {
 
 
 /// Get a random Gender
+///
+/// @return A random Gender
 extern Gender newRandomGender();
 
 

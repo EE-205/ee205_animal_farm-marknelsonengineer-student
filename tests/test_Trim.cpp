@@ -9,7 +9,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// @NOLINTBEGIN
 
-#define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 
 #include "../src/Utility/Trim.h"
@@ -109,5 +108,5 @@ BOOST_AUTO_TEST_SUITE( test_Trim )
       BOOST_CHECK_EQUAL(trim_edges(" \t\f\n\r\v ABC \t\f\n\r\v "), "ABC" );
    }
 
-   BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()
 /// @NOLINTEND

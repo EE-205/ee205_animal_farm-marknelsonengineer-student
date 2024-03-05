@@ -9,8 +9,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// @NOLINTBEGIN
 
-#define BOOST_TEST_MODULE Animal Farm Test Suite
-#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MODULE Animal Farm Test Suite  /// In only one cpp file (by convention, the first file in alphabetical order)
 #include <boost/test/unit_test.hpp>
 
 #include <boost/test/tools/output_test_stream.hpp>

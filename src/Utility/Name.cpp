@@ -43,7 +43,7 @@ Name::Name( string_view newSerialPrefix, string_view newSerialSuffix )
 }
 
 
-std::string Name::getNextName() noexcept {
+std::string Name::getNextName() {
    if( nameType == FROM_FILE ) {
       if( names.empty() ) {
          reset();

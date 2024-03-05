@@ -9,8 +9,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include <string>
 #include <ostream>
+#include <string>
 
 using namespace std::string_view_literals;
 
@@ -28,8 +28,8 @@ using namespace std::string_view_literals;
 /// and can not be changed.
 ///
 /// Weight can can be expressed in different units of measure (#UnitOfWeight).
-/// The Weight's unit of measure is set in a constructor and can not be changed.  It
-/// defaults to #POUND.  Other units of measure are the #KILO and #SLUG.
+/// The Weight's unit of measure is set in a constructor and can not be changed.
+/// It defaults to #POUND.  Other units of measure are the #KILO and #SLUG.
 ///
 /// We are not implementing a complete numeric class, which would have
 /// overrides for:  `*=  /=  %=  ++  --  +  -  *  /  >=  >  <=  !=` and `<=>`
@@ -72,51 +72,194 @@ private:  ////////////////////// Member Variables //////////////////////////////
    bool bIsKnown = false ;  ///< `true` if #weight is known.  Defaults to `false`.
 
 public:   //////////////////////// Constructors ////////////////////////////////
-   Weight() noexcept;  ///< A default Weight (the #weight is #UNKNOWN_WEIGHT)
-   Weight( t_weight newWeight );  ///< A Weight with a #weight
-   Weight( UnitOfWeight newUnitOfWeight ) noexcept;  ///< A Weight with a #UnitOfWeight (the #weight is #UNKNOWN_WEIGHT)
-   Weight( t_weight newWeight, UnitOfWeight newUnitOfWeight );  ///< A Weight with a #weight and #UnitOfWeight
-   Weight( t_weight newWeight, t_weight newMaxWeight );  ///< A Weight with a #weight and a #maxWeight
-   Weight( UnitOfWeight newUnitOfWeight, t_weight newMaxWeight );  ///< A Weight with a #UnitOfWeight and a #maxWeight (the #weight is #UNKNOWN_WEIGHT)
-   Weight( t_weight newWeight, UnitOfWeight newUnitOfWeight, t_weight newMaxWeight );  ///< A fully-specified Weight with a #weight, #UnitOfWeight and #maxWeight
+
+   /// A default Weight (the #weight is #UNKNOWN_WEIGHT)
+   Weight();
+
+   /// A Weight with a #weight
+   ///
+   /// @param newWeight The #weight
+   Weight( t_weight newWeight );
+
+   /// A Weight with a #UnitOfWeight (the #weight is #UNKNOWN_WEIGHT)
+   ///
+   /// @param newUnitOfWeight The #UnitOfWeight
+   Weight( UnitOfWeight newUnitOfWeight );
+
+   /// A Weight with a #weight and #UnitOfWeight
+   ///
+   /// @param newWeight       The #weight
+   /// @param newUnitOfWeight The #UnitOfWeight
+   Weight( t_weight newWeight, UnitOfWeight newUnitOfWeight );
+
+   /// A Weight with a #weight and a #maxWeight
+   ///
+   /// @param newWeight    The #weight
+   /// @param newMaxWeight The #maxWeight
+   Weight( t_weight newWeight, t_weight newMaxWeight );
+
+   /// A Weight with a #UnitOfWeight and a #maxWeight (the #weight is #UNKNOWN_WEIGHT)
+   ///
+   /// @param newUnitOfWeight The #UnitOfWeight
+   /// @param newMaxWeight    The #maxWeight
+   Weight( UnitOfWeight newUnitOfWeight, t_weight newMaxWeight );
+
+   /// A fully-qualified Weight with a #weight, #UnitOfWeight and #maxWeight
+   ///
+   /// @param newWeight       The #weight
+   /// @param newUnitOfWeight The #UnitOfWeight
+   /// @param newMaxWeight    The #maxWeight
+   Weight( t_weight newWeight, UnitOfWeight newUnitOfWeight, t_weight newMaxWeight );
+
 
 public:   /////////////////////////// Getters  /////////////////////////////////
-   bool  isWeightKnown() const noexcept;   ///< `true` if #weight is known
-   bool  hasMaxWeight() const noexcept;    ///< `true` if #maxWeight is set
-   t_weight getWeight() const noexcept;    ///< Get the #weight in the Weight's units
-   t_weight getWeight( UnitOfWeight weightUnits ) const noexcept;  ///< Get the #weight in the specified unit
-   t_weight getMaxWeight() const noexcept; ///< Get #maxWeight
-   UnitOfWeight getWeightUnit() const noexcept;  ///< Get the #UnitOfWeight for this Weight
+
+   /// `true` if #weight is known
+   ///
+   /// @return `true` if #weight is known... `false` if not
+   bool  isWeightKnown() const noexcept;
+
+   /// `true` if #maxWeight is set
+   ///
+   /// @return `true` if #maxWeight is set... `false` if not
+   bool  hasMaxWeight() const noexcept;
+
+   /// Get the #weight in the Weight's units
+   ///
+   /// @return The #weight in the Weight's units
+   t_weight getWeight() const noexcept;
+
+   /// Get the #weight in the specified unit
+   ///
+   /// @param weightUnits The #UnitOfWeight to return
+   ///
+   /// @return The #weight in the specified unit
+   t_weight getWeight( UnitOfWeight weightUnits ) const noexcept;
+
+   /// Get #maxWeight
+   ///
+   /// @return #maxWeight if it's set or #UNKNOWN_WEIGHT if not
+   t_weight getMaxWeight() const noexcept;
+
+   /// Get the #UnitOfWeight for this Weight
+   ///
+   /// @return The #UnitOfWeight for this Weight
+   UnitOfWeight getWeightUnit() const noexcept;
+
 
 public:   /////////////////////////// Setters  /////////////////////////////////
-   void setWeight( t_weight newWeight );  ///< Set the #weight
-   void setWeight( t_weight newWeight, UnitOfWeight weightUnits );  ///< Set the #weight in the specified unit
+   /// Set the #weight
+   ///
+   /// @param newWeight The #weight to set
+   void setWeight( t_weight newWeight );
+
+   /// Set the #weight in the specified unit
+   ///
+   /// @param newWeight   The #weight to set
+   /// @param weightUnits The #UnitOfWeight for this #weight
+   void setWeight( t_weight newWeight, UnitOfWeight weightUnits );
+
 
 private:   ///////////////////// Private Methods ///////////////////////////////
-   void setInitialWeight( t_weight newWeight );  ///< Set the #weight in the constructor
-   void setInitialMaxWeight( t_weight newMaxWeight );  ///< Set #maxWeight in the constructor
+   /// Set the #weight in the constructor
+   ///
+   /// @param newWeight The #weight to set
+   void setInitialWeight( t_weight newWeight );
+
+   /// Set #maxWeight in the constructor
+   ///
+   /// @param newMaxWeight The #maxWeight to set
+   void setInitialMaxWeight( t_weight newMaxWeight );
+
 
 public:   /////////////////////// Static Methods ///////////////////////////////
    // Static methods are `const` by default
-   static constexpr t_weight fromGramToPound( t_weight gram )         noexcept { return fromKilogramToPound( gram / 1000.0 ); }  ///< Convert a Gram (1/1000 of a #KILO) to #POUND.  This is good for Bird weights.
-   static constexpr t_weight fromKilogramToPound( t_weight kilogram ) noexcept { return kilogram / KILOS_IN_A_POUND ; }          ///< Convert #KILO to #POUND
-   static constexpr t_weight fromPoundToKilogram( t_weight pound )    noexcept { return pound * KILOS_IN_A_POUND ; }             ///< Convert #POUND to #KILO
-   static constexpr t_weight fromSlugToPound( t_weight slug )         noexcept { return slug / SLUGS_IN_A_POUND ; }              ///< Convert #SLUG to #POUND
-   static constexpr t_weight fromPoundToSlug( t_weight pound )        noexcept { return pound * SLUGS_IN_A_POUND ; }             ///< Convert #POUND to #SLUG
+
+   /// Convert a Gram (1/1000 of a #KILO) to #POUND.  This is good for Bird weights.
+   ///
+   /// @param gram A weight in grams
+   /// @return A weight in pounds
+   static constexpr t_weight fromGramToPound( t_weight gram )         noexcept { return fromKilogramToPound( (t_weight)( gram / 1000.0 ) ); }
+
+   /// Convert #KILO to #POUND
+   ///
+   /// @param kilogram A weight in kilograms
+   /// @return A weight in pounds
+   static constexpr t_weight fromKilogramToPound( t_weight kilogram ) noexcept { return kilogram / KILOS_IN_A_POUND ; }
+
+   /// Convert #POUND to #KILO
+   ///
+   /// @param pound A weight in pounds
+   /// @return A weight in kilograms
+   static constexpr t_weight fromPoundToKilogram( t_weight pound )    noexcept { return pound * KILOS_IN_A_POUND ; }
+
+   /// Convert #SLUG to #POUND
+   ///
+   /// @param slug A weight in slugs
+   /// @return A weight in pounds
+   static constexpr t_weight fromSlugToPound( t_weight slug )         noexcept { return slug / SLUGS_IN_A_POUND ; }
+
+   /// Convert #POUND to #SLUG
+   ///
+   /// @param pound A weight in pounds
+   /// @return A weight in slugs
+   static constexpr t_weight fromPoundToSlug( t_weight pound )        noexcept { return pound * SLUGS_IN_A_POUND ; }
+
 
    /// Convert fromWeight in fromUnit to a weight in toUnit
+   ///
+   /// @param fromWeight The source weight
+   /// @param fromUnit   The target weight
+   /// @param toUnit     The target unit of measure
+   /// @return fromWeight in fromUnit to a weight in toUnit
    static t_weight convertWeight( t_weight fromWeight, UnitOfWeight fromUnit, UnitOfWeight toUnit ) noexcept;
 
+
 public:   /////////////////////// Public Methods ///////////////////////////////
-   bool isWeightValid( t_weight checkWeight ) const noexcept;  ///< Check the Weight
-   bool validate() const noexcept;   ///< Check Weight to ensure it's healthy
-   void dump() const noexcept;       ///< Print the Weight class
+
+   /// Check the Weight
+   ///
+   /// @param checkWeight A weight to check
+   /// @return `true` if the Weight is valid... `false` if not
+   bool isWeightValid( t_weight checkWeight ) const noexcept;
+
+   /// Check Weight to ensure it's healthy
+   ///
+   /// @return `true` if the Weight is valid... `false` if not
+   bool validate() const noexcept;
+
+   /// Print the Weight class
+   void dump() const noexcept;
+
 
 public:   ////////////////////// Public Overrides //////////////////////////////
-   bool operator==( const Weight& rhs_Weight ) const;  ///< Weights are equal when their #weight s are equal
-   bool operator<( const Weight& rhs_Weight ) const;   ///< Compare two Weights
-   Weight& operator+=( t_weight rhs_addToWeight );     ///< Add to an existing Weight
-   Weight& operator-=( t_weight rhs_subtractFromWeight );  ///< Subtract from an existing Weight
+
+   /// Weights are equal when their #weight s are equal
+   ///
+   /// @param rhs_Weight A weight on the right side of a `==`
+   /// @return `true` if the weights are equal
+   bool operator==( const Weight& rhs_Weight ) const;
+
+
+   /// Compare two Weights
+   ///
+   /// @param rhs_Weight A weight on the right side of the `<`
+   /// @return `true` if the the rhs_Weight is < than the lhs_Weight
+   bool operator<( const Weight& rhs_Weight ) const;
+
+
+   /// Add to an existing Weight
+   ///
+   /// @param rhs_addToWeight A weight to add to the existing Weight
+   /// @return The new Weight
+   Weight& operator+=( t_weight rhs_addToWeight );
+
+
+   /// Subtract from an existing Weight
+   ///
+   /// @param rhs_subtractFromWeight A weight to subtract from the existing Weight
+   /// @return The new Weight
+   Weight& operator-=( t_weight rhs_subtractFromWeight );
 };
 
 
