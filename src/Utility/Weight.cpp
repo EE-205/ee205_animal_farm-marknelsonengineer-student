@@ -358,8 +358,8 @@ std::ostream& operator<<( std::ostream& lhs_stream, const Weight& rhs_Weight ) {
 
    stringBuffer << " " << rhs_Weight.getWeightUnit() ;
 
-   /// If the numeric weight is 1, use the singular form of the unit.
-   /// If the numeric weight is not 1, use the plural form of the unit.
+   // If the numeric weight is 1, use the singular form of the unit.
+   // If the numeric weight is not 1, use the plural form of the unit.
    if(    ( !rhs_Weight.hasMaxWeight() && rhs_Weight.getWeight() > 1 )
           || ( rhs_Weight.hasMaxWeight() && rhs_Weight.getMaxWeight() > 1 ) ) {
       stringBuffer << "s";

@@ -8,30 +8,27 @@
 /// @author Mark Nelson <marknels@hawaii.edu>
 ////////////////////////////////////////////////////////////////////////////////
 
+#include <boost/core/typeinfo.hpp>  // for typeinfo()
 #include <cassert>    // For assert()
+#include <iomanip>    // For setw() & setfill()
 #include <iostream>   // For cout
 #include <stdexcept>  // For out_of_range
-#include <iomanip>    // For setw() & setfill()
-#include <boost/core/typeinfo.hpp>  // for typeinfo()
 
-#include "../config.h"
 #include "Animal.h"
-#include "../Utility/Trim.h"
+
 #include "../Utility/Name.h"
+#include "../Utility/Trim.h"
+#include "../config.h"
 
 using namespace std;
 
 
-/// @param newMaxWeight Must be a valid weight per Weight::isWeightValid
-/// @param newClassification Must be a valid name per Name::validateName
-/// @param newSpecies Must be a valid name per Name::validateName
 Animal::Animal( const Weight::t_weight newMaxWeight
               , const std::string_view newClassification
-              , const std::string_view newSpecies )
-              : Node()                                           // Delegating constructor
-              , species { trim_in( newSpecies ) }                // Member initializer list
-              , classification { trim_in( newClassification ) }  // Member initializer list
-              , weight( Weight::POUND, newMaxWeight )            // Delegating constructor
+              , const std::string_view newSpecies ) :
+                species { trim_edges( newSpecies ) }                // Member initializer list
+              , classification { trim_edges( newClassification ) }  // Member initializer list
+              , weight( Weight::POUND, newMaxWeight )               // Delegating constructor
 {
    if( !Name::validateName( newClassification ) ) {
       /// @throws invalid_argument When the classification is invalid per Name::validateName
@@ -47,19 +44,13 @@ Animal::Animal( const Weight::t_weight newMaxWeight
 }
 
 
-/// @param newGender The Gender of the Animal
-/// @param newWeight Must be a valid weight per Weight::isWeightValid
-/// @param newMaxWeight Must be a valid weight per Weight::isWeightValid
-/// @param newClassification Must be a valid name per Name::validateName
-/// @param newSpecies Must be a valid name per Name::validateName
 Animal::Animal( const Gender newGender
               , const Weight::t_weight newWeight
               , const Weight::t_weight newMaxWeight
               , const string_view newClassification
               , const string_view newSpecies )
-        : Node()                                           // Delegating constructor
-        , species { trim_in( newSpecies ) }                // Member initializer list
-        , classification { trim_in( newClassification ) }
+        : species { trim_edges( newSpecies ) }                // Member initializer list
+        , classification { trim_edges( newClassification ) }
         , gender { newGender }
         , weight( newWeight, Weight::POUND, newMaxWeight )
 {
@@ -107,8 +98,6 @@ void Animal::setWeight( const Weight::t_weight newWeight ) {
 /// this method is protected.
 ///
 /// You can only change the gender if it's currently UNKNOWN_GENDER.
-///
-/// @param newGender The new gender
 void Animal::setGender( const Gender newGender ) {
    if( gender != Gender::UNKNOWN_GENDER ) {
       /// @throws logic_error If you try to change the gender of an Animal
@@ -134,7 +123,7 @@ std::string Animal::info() const noexcept {
    // Put the address of this object into a string
    std::stringstream stringStream;
    stringStream << this;
-   std::string theAddressOfThis = stringStream.str();
+   const std::string theAddressOfThis = stringStream.str();
 
    string infoString {};
 
@@ -168,8 +157,6 @@ void Animal::dump() const noexcept {
 
    PRINT_HEADING_FOR_DUMP ;
 
-   Node::dump();
-
    FORMAT_LINE_FOR_DUMP( "Animal", "kingdom" ) << getKingdom() << endl ;
    FORMAT_LINE_FOR_DUMP( "Animal", "classification" ) << getClassification() << endl ;
    FORMAT_LINE_FOR_DUMP( "Animal", "species" ) << getSpecies() << endl ;
@@ -179,8 +166,6 @@ void Animal::dump() const noexcept {
 
 
 bool Animal::validate() const noexcept {
-   assert( Node::validate());
-
    assert( !getKingdom().empty());
    assert( Name::validateName( getSpecies()));
    assert( Name::validateName( getClassification()));
@@ -193,13 +178,11 @@ bool Animal::validate() const noexcept {
 
 /// @anchor Animal_comparison
 /// The `this` member is the left side of the operator.
-/// @param rhs_animal `rhs` stands for Right Hand Side and is the right side of the operator.
-/// @return `true` if `this` < `rhs_animal`
 bool Animal::operator<( const Animal& rhs_animal ) const {
-   if( classification < rhs_animal.classification )
-      return true;
-   if( rhs_animal.classification < classification )
-      return false;
+   if( classification < rhs_animal.classification ) { return true; }
+
+   if( rhs_animal.classification < classification ) { return false; }
+
    // If the two `classifications` are equal, compare `species`
    return species < rhs_animal.species;
 }
@@ -223,6 +206,7 @@ bool Animal::operator>=( const Animal& rhs_animal ) const {
 }
 
 
+/*
 /// @anchor Animal_Node_comparison
 /// Compare an Animal and a Node.  This is the operator that gets overridden by a generic comparison (for example in an algorithm that knows about Nodes, but not Animals).
 ///
@@ -234,7 +218,7 @@ bool Animal::operator<( const Node& rhs_node ) const {
       const Animal& rhs_animal = dynamic_cast<const Animal&>(rhs_node);  /// First, try to dynamically cast `rhs_node` to an Animal.
       return *this < rhs_animal;          /// If both the left and right sides are Animals, then, use the Animal comparison like @ref Animal_comparison "operator<( Animal& rhs_animal )"
    } catch ( bad_cast& exception ) {      /// If `rhs_node` is not an Animal, it will throw a `bad_cast` exception...
-      return Node::operator<( rhs_node ); /// which will be caught and we will use a Node comparison like Node::operator<
+      return Node::operator<( rhs_node ); /// which will be caught... and we will use a Node comparison like Node::operator<
    }
 }
 
@@ -255,3 +239,4 @@ bool Animal::operator>( const Node& rhs_node ) const {
 bool Animal::operator>=( const Node& rhs_node ) const {
    return Node::operator>=( rhs_node );
 }
+*/

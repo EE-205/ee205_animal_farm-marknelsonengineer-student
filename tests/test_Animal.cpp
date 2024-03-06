@@ -14,12 +14,10 @@
 
 #include <boost/test/tools/output_test_stream.hpp>
 
-/*
 #include <string>
 #include <stdexcept>
 
 #include "../src/Animal/Animal.h"
-#include "../src/Animal/AnimalFactory.h"
 
 using namespace std;
 
@@ -84,7 +82,7 @@ BOOST_AUTO_TEST_SUITE( test_Animal )
       BOOST_CHECK_EQUAL( anAnimal.validate(), true );
    }
 
-
+/*
    // This test exercises the non-Cat animal classes like Dog, et. al.
    BOOST_AUTO_TEST_CASE( test_Animal_Factory ) {
       for( int i = 0 ; i < 500 ; i++ ) {
@@ -94,7 +92,7 @@ BOOST_AUTO_TEST_SUITE( test_Animal )
          BOOST_CHECK_EQUAL( anAnimal.info().empty(), false );
       }
    }
+*/
 
 BOOST_AUTO_TEST_SUITE_END()
-*/
 /// @NOLINTEND
