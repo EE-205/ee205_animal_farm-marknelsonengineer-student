@@ -30,6 +30,7 @@
 #   -cert-msc50-cpp      # We can use the rand() function in C++
 #   -cert-msc51-cpp      # Allow pseudo random number engines
 # clang-analyzer-*
+#   -clang-analyzer-optin.cplusplus.VirtualCall
 #   -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling  # Allow old buffer handling (for educational purposes only)
 # llvm-*
 #   -llvm-header-guard   # We use #pragma once, not a traditional header guard
@@ -62,6 +63,7 @@ Checks: >
     -cert-msc50-cpp,
     -cert-msc51-cpp,
   clang-analyzer-*,
+    -clang-analyzer-optin.cplusplus.VirtualCall,
     -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,
   llvm-*,
     -llvm-header-guard,

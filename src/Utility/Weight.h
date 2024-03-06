@@ -265,6 +265,26 @@ public:   ////////////////////// Public Overrides //////////////////////////////
 
 /// Output Weight as a formatted string
 ///
+/// #### Output rules
+///
+///   - If #Weight::weight is unknown, print `Unknown`
+///   - If Weight has a #Weight::maxWeight, print the #Weight::weight followed by ` out of ` and then #Weight::maxWeight
+///   - Print the #Weight::UnitOfWeight.  If the last number that's printed is > 1, then make the unit plural by adding an `s`
+///
+/// #### Sample Output
+///
+/// Test vectors for Weight << override:
+///     | Usage                                   | The Output              |
+///     |-----------------------------------------|-------------------------|
+///     | `Weight weight`                         | `Unknown`               |
+///     | `Weight weight( 0.5 )`                  | `0.5 Pound`             |
+///     | `Weight weight( 1 )`                    | `1 Pound`               |
+///     | `Weight weight( 1.5 )`                  | `1.5 Pounds`            |
+///     | `Weight weight( 1.5, Weight::KILO )`    | `1.5 Kilos`             |
+///     | `Weight weight( 0.5, Weight::KILO, 1 )` | `0.5 out of 1 Kilo`     |
+///     | `Weight weight( 0.5, Weight::KILO, 2 )` | `0.5 out of 2 Kilos`    |
+///     | `Weight weight( Weight::KILO, 1 )`      | `Unknown out of 1 Kilo` |
+///
 /// @param lhs_stream The output stream to write to (usually `cout`).  `lhs` stands for Left Hand Side and means the left side of the `<<` operator.
 /// @param rhs_Weight The Weight to output.  `rhs` stands for Right Hand Side and means the right side of the `<<` operator.
 /// @return `Unknown Pounds` or `3.14 out of 20 Kilos`

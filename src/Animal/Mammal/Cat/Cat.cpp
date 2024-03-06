@@ -8,18 +8,19 @@
 /// @author Mark Nelson <marknels@hawaii.edu>
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <stdexcept>
-#include <iostream>
 #include <cassert>
+#include <iostream>
 #include <random>
+#include <stdexcept>
 
 #include "Cat.h"
+
 #include "../../../Utility/Trim.h"
 
 using namespace std ;
 
 /// Data file that holds a list of cat names
-#define CAT_NAMES_FILE "./data/catNames.txt"sv
+#define CAT_NAMES_FILE "../../data/catNames.txt"sv
 
 
 /// This is static, so the list will be available for any and all Cats to use (but nobody else).
@@ -30,14 +31,9 @@ using namespace std ;
 Name Cat::names( CAT_NAMES_FILE );
 
 
-/// This constructor is declared to be `explicit`, so you can't do silly
-/// things like `Cat newCat = "Bella";` ... instead, you need to construct
-/// a Cat properly like `Cat newCat( "Bella" );`
-///
-/// @param newName Must be a valid name per Name::validateName
 Cat::Cat( const std::string_view newName )
         : Mammal( MAX_WEIGHT, SPECIES_NAME )  // Delegating constructor
-        , name { trim_in( newName ) }         // Member initializer list
+        , name { trim_edges( newName ) }      // Member initializer list
         , isCatFixed { false } {              // Member initializer list
    if( !Name::validateName( name ) ) {
       /// @throws invalid_argument If the Cat doesn't have a name
@@ -54,8 +50,8 @@ Cat::Cat( const std::string_view newName
          ,const Gender           newGender
          ,const Weight::t_weight newWeight )
         : Mammal( newColor, newGender, newWeight, MAX_WEIGHT, SPECIES_NAME )  // Delegating constructor
-        , name { trim_in( newName ) }  // Member initializer list
-        , isCatFixed { newIsFixed } {  // Member initializer list
+        , name { trim_edges( newName ) }  // Member initializer list
+        , isCatFixed { newIsFixed } {     // Member initializer list
 
    if( !Name::validateName( name ) ) {
       /// @throws invalid_argument If the Cat doesn't have a name
@@ -75,16 +71,15 @@ string_view Cat::getName() const noexcept {
 }
 
 
-/// @param newName The Cat's new name.  It must be valid per Name::validateName.
 void Cat::setName( const string_view newName ) {
-   string trialName { trim_in( newName ) };
+   string trialName { trim_edges( newName ) };
 
    if( !Name::validateName( trialName ) ) {
       /// @throws invalid_argument If the Cat's name is invalid
       throw invalid_argument( "The cat's name [" + trialName + "] is invalid" );
    }
 
-   name = move( trialName );
+   name = std::move( trialName );
 }
 
 
@@ -122,7 +117,6 @@ void Cat::dump() const noexcept {
 }
 
 
-/// Check the Cat object
 bool Cat::validate() const noexcept {
    assert( Mammal::validate() );
 
@@ -134,21 +128,11 @@ bool Cat::validate() const noexcept {
 }
 
 
-/// @pattern Factory Method
-///
-/// #### Internal
-/// This function will use `new` to create a random Cat (Animal) on the heap.
-/// Be sure to `delete` the Animal when it's no longer needed
 Animal& Cat::newRandomAnimal() {
    return (Animal&) newRandomCat();
 }
 
 
-/// @pattern Factory Method
-///
-/// #### Internal
-/// This function will use `new` to create a random Cat on the heap.
-/// Be sure to `delete` the Cat when it's no longer needed
 Cat& Cat::newRandomCat() {
    uniform_real_distribution<> weightRNG ( 0.1, Cat::MAX_WEIGHT );
    bernoulli_distribution      isFixedRNG( 0.85 ); // 85% of cats are neutered
@@ -163,10 +147,6 @@ Cat& Cat::newRandomCat() {
 }
 
 
-/// @anchor Cat_comparison
-/// The `this` member is the left side of the operator.
-/// @param rhs_cat `rhs` stands for Right Hand Side and is the right side of the operator.
-/// @return `true` if `this` < `rhs_cat`
 bool Cat::operator<( const Cat& rhs_cat ) const {
    // cout << "this.name=[" << name << "]  rhs_cat.name=[" << rhs_cat.name << "]  name < rhs_cat.name=[" << ((name < rhs_cat.name) ? "true" : "false") << "]" << endl;
    return name < rhs_cat.name;
@@ -191,6 +171,7 @@ bool Cat::operator>=( const Cat& rhs_cat ) const {
 }
 
 
+/*
 /// @anchor Cat_Node_comparison
 /// Compare a Cat and a Node.  This is the operator that gets overridden by a generic comparison (for example in an algorithm that knows about Nodes, but not Cats).
 ///
@@ -202,7 +183,7 @@ bool Cat::operator<( const Node& rhs_node ) const {
       const Cat& rhs_cat = dynamic_cast<const Cat&>(rhs_node);  /// First, try to dynamically cast `rhs_node` to a Cat.
       return *this < rhs_cat;               /// If both the left and right sides are Cats, then, use the Cat comparison like @ref Cat_comparison "operator<( Cat& rhs_cat )"
    } catch ( bad_cast& exception ) {        /// If `rhs_node` is not a Cat, it will throw a `bad_cast` exception...
-      return Animal::operator<( rhs_node ); /// which will be caught and we will try an Animal comparison like @ref Animal_comparison "Animal::operator<( Animal& rhs_animal )"
+      return Animal::operator<( rhs_node ); /// which will be caught... and we will try an Animal comparison like @ref Animal_comparison "Animal::operator<( Animal& rhs_animal )"
    }
 }
 
@@ -223,3 +204,4 @@ bool Cat::operator>( const Node& rhs_node ) const {
 bool Cat::operator>=( const Node& rhs_node ) const {
    return Animal::operator>=( rhs_node );
 }
+*/

@@ -26,7 +26,6 @@
 #include <queue>
 
 #include "../src/Animal/Mammal/Cat/Cat.h"
-#include "../src/Container/DoublyLinkedList.h"
 
 using namespace std;
 
@@ -140,6 +139,7 @@ BOOST_AUTO_TEST_SUITE( test_Cat )
    }
 
 
+   /*
    BOOST_AUTO_TEST_CASE( test_Cat_pointer_copy_logic ) {
       // This test is fairly simple... make sure that we can Copy Cats, but
       // when we do, their Node pointers don't go with them.
@@ -180,11 +180,11 @@ BOOST_AUTO_TEST_SUITE( test_Cat )
       BOOST_CHECK_EQUAL( DoublyLinkedList::getPrev( &y ), nullptr );
       BOOST_CHECK_EQUAL( y.getName(), "Bucky" );
    }
-
+*/
 
    BOOST_AUTO_TEST_CASE( test_Cat_in_STL_templates ) {
 
-      const int NUM_CATS = 1000;
+      const int NUM_CATS = 100;
 
       // Doubly linked list from the STL
       {

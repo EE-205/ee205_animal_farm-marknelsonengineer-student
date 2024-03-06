@@ -119,21 +119,6 @@ Name::serial_t Name::remainingNames() noexcept {
 }
 
 
-/// newName should have had XXXXX run on it before it's validated here.
-///
-/// The validation rules are:
-///
-///   - The name should not be empty.
-///   - The name should be trimmed for whitespace (both left and right whitespace should be removed).
-///   - The name should not start with a number or `-`.
-///   - The name should not have any special characters except a `-`.  Allowed
-///     characters are `A`-`Z`, `a`-`z`, `0`-`9`, space and `-`.
-///   - The interior whitespace of the name should be trimmed.
-///
-/// If the name is not valid, print an explanation and return `false`
-///
-/// @param newName The name to check
-/// @return `true` if the name is valid.  `false` if it's not.
 bool Name::validateName( const std::string_view newName ) {
 
    if( !validateNotEmpty( newName )) { return false; }

@@ -9,8 +9,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
-#include "../Animal.h"
 #include "../../Utility/Color.h"
+#include "../Animal.h"
 
 
 /// Mammals have more fun.
@@ -26,11 +26,20 @@ protected:  ///////////////////////// Member Variables /////////////////////////
 
 public:   /////////////////////// Constructors ////////////////////////////////
    /// Create a Mammal with the *minimum* required fields
+   ///
+   /// @param newMaxWeight Must be a valid weight per Weight::isWeightValid
+   /// @param newSpecies   Must be a valid name per Name::validateName
    Mammal( const Weight::t_weight newMaxWeight
           ,const std::string_view newSpecies
    );
 
    /// Create a Mammal, populating *all* of the member variables
+   ///
+   /// @param newColor     The Mammal's primary color
+   /// @param newGender    The Gender of the Animal
+   /// @param newWeight    Must be a valid weight per Weight::isWeightValid
+   /// @param newMaxWeight Must be a valid weight per Weight::isWeightValid
+   /// @param newSpecies   Must be a valid name per Name::validateName
    Mammal( const Color            newColor
           ,const Gender           newGender
           ,const Weight::t_weight newWeight
@@ -39,9 +48,26 @@ public:   /////////////////////// Constructors ////////////////////////////////
    );
 
 public:  ////////////////////////// Getters & Setters //////////////////////////
-   Color getColor() const noexcept { return color; }  ///< Get the color
-   void  setColor( const Color newColor ) noexcept { color = newColor; }  ///< Set the color
+
+   /// Get the Color of the Mammal
+   ///
+   /// @return The Color of the Mammal
+   Color getColor() const noexcept { return color; }
+
+   /// Set the color
+   ///
+   /// @param newColor The new Color for the Mammal
+   void  setColor( const Color newColor ) noexcept { color = newColor; }
 
 public:  /////////////////////////// Public Methods ////////////////////////////
-   void dump() const noexcept override;  ///< Output the contents of this object (and its parents)
+
+   /// Output the contents of this object (and its parents)
+   ///
+   /// #### Sample Output
+   /**@verbatim
+   ======================================================
+   Mammal              color               Unknown color
+   @endverbatim */
+
+   void dump() const noexcept override;
 };

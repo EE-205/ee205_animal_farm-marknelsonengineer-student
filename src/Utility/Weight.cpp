@@ -315,29 +315,6 @@ void Weight::dump() const noexcept {
 }
 
 
-/// #### Output rules
-///
-///   - If #Weight::weight is unknown, print `Unknown`
-///   - If Weight has a #Weight::maxWeight, print the #Weight::weight followed by ` out of ` and then #Weight::maxWeight
-///   - Print the #Weight::UnitOfWeight.  If the last number that's printed is > 1, then make the unit plural by adding an `s`
-///
-/// #### Sample Output
-///
-/// Test vectors for Weight << override:
-///     | Usage                                   | The Output              |
-///     |-----------------------------------------|-------------------------|
-///     | `Weight weight`                         | `Unknown`               |
-///     | `Weight weight( 0.5 )`                  | `0.5 Pound`             |
-///     | `Weight weight( 1 )`                    | `1 Pound`               |
-///     | `Weight weight( 1.5 )`                  | `1.5 Pounds`            |
-///     | `Weight weight( 1.5, Weight::KILO )`    | `1.5 Kilos`             |
-///     | `Weight weight( 0.5, Weight::KILO, 1 )` | `0.5 out of 1 Kilo`     |
-///     | `Weight weight( 0.5, Weight::KILO, 2 )` | `0.5 out of 2 Kilos`    |
-///     | `Weight weight( Weight::KILO, 1 )`      | `Unknown out of 1 Kilo` |
-///
-/// @param lhs_stream The stream to send the text to
-/// @param rhs_Weight The weight we are printing
-/// @return The stream to send the text to
 std::ostream& operator<<( std::ostream& lhs_stream, const Weight& rhs_Weight ) {
    stringstream stringBuffer;
 

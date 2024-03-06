@@ -134,7 +134,7 @@ public:   /////////////////////////// Public Methods ///////////////////////////
    /// If it's not, print the reason why, but don't throw an exception
    ///
    /// @return `true` if the object is valid... `false` if not
-   bool validate()     const noexcept;
+   virtual bool validate() const noexcept;
 
 
 public:  ///////////////////////// Operator Overrides //////////////////////////
