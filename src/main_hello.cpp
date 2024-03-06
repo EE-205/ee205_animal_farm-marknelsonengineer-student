@@ -25,7 +25,7 @@ using namespace std;
 /// The Linux ABI, under a chapter called "Stack State" has a good explanation
 /// of what happens between `_start()` and main().
 ///
-/// @see https://en.cppreference.com/w/c/language/main_function
+/// @API{ main, https://en.cppreference.com/w/cpp/language/main_function }
 /// @see https://en.wikipedia.org/wiki/Crt0
 ///
 /// @return The program's return value

@@ -10,7 +10,7 @@
 #pragma once
 
 #include <iomanip>    // For setw() & setfill()
-#include <iostream>
+#include <iostream>   // For cout
 #include <random>     // For random_device & mt19937
 
 #include "Utility/Random.h"
