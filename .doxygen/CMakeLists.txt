@@ -123,7 +123,7 @@ if (DOXYGEN_FOUND)
             ${CMAKE_SOURCE_DIR}/DOXYGEN.md
             ${CMAKE_SOURCE_DIR}/RELEASE.md
             ${CMAKE_SOURCE_DIR}/tests/INSTALLING_BOOST_TESTS.md
-            ${CMAKE_SOURCE_DIR}/STATISTICS.md
+##          ${CMAKE_SOURCE_DIR}/STATISTICS.md
             ALL
             COMMENT "Generating doxygen documentation for ${PROJECT_NAME} to ${DOXYGEN_OUTPUT_DIRECTORY}"
     )
@@ -136,7 +136,7 @@ if (DOXYGEN_FOUND)
 
     add_custom_command(TARGET Doxygen
             PRE_BUILD
-            COMMAND ./.doxygen/stats.py
+##          COMMAND ./.doxygen/stats.py
             COMMENT "Updating statistics"
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
     )
